@@ -5,18 +5,7 @@
 </template>
 <script>
 export default {
-  name: "App",
-  data() {
-    return {
-      message: "hello",
-      isMessage: false
-    };
-  },
-  computed: {
-    get() {
-      return "hello";
-    }
-  }
+  name: "App"
 };
 </script>
 <style>
@@ -25,9 +14,19 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.menu {
+  margin: 0;
+  padding: 0;
+  background: none;
+  width: 30px;
+  border: none;
+  color: wheat;
+  color: none;
+  font-size: 15px;
+  transform: rotate(90deg);
+}
 .container {
-  margin: 0 auto;
+  margin: 10px auto;
   width: 80%;
   display: flex;
   justify-content: center;
@@ -43,19 +42,21 @@ ul {
 li {
   padding: 10px;
   margin: 5px auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border: 1px solid #bdbdbd;
   border-radius: 5px;
   width: 345px;
   text-align: center;
+  color: white;
 }
 li:hover {
   cursor: pointer;
   background-color: #3292ff;
   color: white;
 }
-/* span {
-  margin: 5px;
-} */
+span {
+  color: #b2d6ff;
+}
 button {
   padding: 10px 18px;
   border: none;
@@ -74,17 +75,20 @@ button:hover {
 h1,
 h2 {
   text-align: center;
+  color: wheat;
 }
 .content {
   min-height: 85vh;
+  margin-top: 50px;
 }
 /* home page */
 form {
   margin: 20px;
   width: 425px;
-  background: #868686;
+  background: rgba(0, 0, 20, 0.4);
   border-radius: 5px;
   padding: 10px;
+  color: wheat;
   text-align: center;
 }
 select {
@@ -93,13 +97,14 @@ select {
   padding: 3px;
   font-size: 14px;
   font-weight: bold;
-  margin: 0 auto;
+  margin: 5px 10px;
   text-align: center;
+  border: none;
 }
 
 /* random */
 .user-ticket {
-  background-color: #787878;
+  background-color: rgba(0, 0, 20, 0.25);
   max-width: 400px;
   text-align: center;
   padding: 5px;
@@ -121,22 +126,32 @@ select {
 
 /* Detail page */
 .other-users {
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 /* header */
 .header ul {
+  /* background: #75b6ff; */
+  background-color: rgba(0, 0, 20, 0.2);
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .header li {
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 10px;
   width: 100px;
   border-radius: 0;
   border: none;
+  color: white;
+}
+.header li:first-child {
+  margin-left: 0;
 }
 .header li:hover {
   color: white;
@@ -157,14 +172,17 @@ select {
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
   body {
-    background-color: #f5cf8e; /* Yellow */
+    /* background-color: #f5cf8e;  */
   }
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 401px) {
   body {
-    background-color: #b2d6ff; /* Blue */
+    /* background-color: #b2d6ff; Blue */
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/60/79/4957a6acaa60ea7.jpg");
+    background-attachment: fixed;
+    background-size: cover;
   }
 }
 </style>

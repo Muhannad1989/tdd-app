@@ -1,6 +1,7 @@
 <template>
   <div class="detail">
     <div class="content">
+      <h1>User Details</h1>
       <HeaderApp />
       <div v-if="user.length !== 0">
         <UserInformation :selectedItem="user[0]" />
@@ -44,9 +45,9 @@ export default {
     this.users = await res.data;
     // set selected user
     this.user = this.user.filter(ele => ele.id == this.$route.params.id);
-    // set many random user 3
+    // set many 3 random user
     this.users = this.users.filter(ele => ele.id != this.$route.params.id);
-    // sort users randomlyy
+    // sort users randomly
     this.users = this.users.sort(() => Math.random() - 0.5);
     //
     this.users = this.users.splice(0, 3);

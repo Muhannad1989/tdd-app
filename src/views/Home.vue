@@ -45,6 +45,18 @@ export default {
     ListItems,
     FooterApp
   },
+  // computed: {
+  //   computedData() {
+  //     // eslint-disable-next-line no-console
+  //     console.log("run computed");
+  //     return this.users;
+  //   }
+  // },
+  // watch: {
+  //   users: function() {
+  //     this.users;
+  //   }
+  // },
   methods: {
     sorting() {
       if (this.selected == "normal") {
