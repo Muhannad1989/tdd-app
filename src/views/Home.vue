@@ -1,18 +1,83 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HeaderApp />
+    <div class="content">
+      <h1>Home page</h1>
+      <div class="container">
+        <form>
+          Sorting by:
+          <select v-model="selected" @change="sorting">
+            <option disabled value>Please select one</option>
+            <option>normal</option>
+            <option>a to z</option>
+            <option>z to a</option>
+          </select>
+        </form>
+      </div>
+      <div class="container">
+        <ul class="listItems">
+          <ListItems v-for="user in users" :key="user.id" :user="user" />
+        </ul>
+      </div>
+    </div>
+    <FooterApp />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HeaderApp from "../components/layout/HeaderApp.vue";
+import FooterApp from "../components/layout/FooterApp.vue";
+import ListItems from "../components/ListItems.vue";
+import axios from "axios";
 
 export default {
-  name: "home",
+  name: "Home",
+  data() {
+    return {
+      orginal: [],
+      users: [],
+      loading: false,
+      selected: "normal"
+    };
+  },
   components: {
-    HelloWorld
+    HeaderApp,
+    ListItems,
+    FooterApp
+  },
+  methods: {
+    sorting() {
+      if (this.selected == "normal") {
+        this.users = this.orginal;
+      } else if (this.selected == "a to z") {
+        this.users = this.orginal;
+        this.users.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+      } else if (this.selected == "z to a") {
+        this.users = this.orginal;
+        this.users.sort((a, b) => {
+          if (a.name < b.name) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+      }
+    }
+  },
+  async created() {
+    // https://api.publicapis.org/entries?category=books
+    let res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    let selectedArray = res.data.slice(0, 10);
+    this.orginal = selectedArray;
+    this.users = selectedArray;
   }
 };
 </script>
+
+<style></style>
