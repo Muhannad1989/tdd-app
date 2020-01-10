@@ -6,7 +6,10 @@
       <div class="random-button">
         <button v-on:click="random()">Random Item</button>
       </div>
-      <UserInformation :selectedItem="user" />
+      <UserInformation v-if="!isLoading" :selectedItem="item" />
+      <div v-if="isLoading">
+        <img class="loading" src="../assets/loading.gif" alt="loading" />
+      </div>
     </div>
     <FooterApp />
   </div>
@@ -23,7 +26,8 @@ export default {
   data() {
     return {
       users: [],
-      user: []
+      item: [],
+      isLoading: true
     };
   },
   components: {
@@ -32,8 +36,8 @@ export default {
     FooterApp
   },
   async created() {
-    let res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    this.users = await res.data;
+    let res = await axios.get("https://api.publicapis.org/entries");
+    this.users = await res.data.entries;
     // generate a random users list
     this.users = this.users.sort(() => Math.random() - 0.5);
     // set a random user
@@ -44,7 +48,8 @@ export default {
       // generat random number
       let random = [Math.floor(Math.random() * this.users.length)];
       // set random item to state
-      this.user = this.users[random];
+      this.item = this.users[random];
+      this.isLoading = false;
     }
   }
 };

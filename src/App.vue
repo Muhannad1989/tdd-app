@@ -77,6 +77,11 @@ h2 {
   text-align: center;
   color: wheat;
 }
+.loading {
+  display: block;
+  width: 60px;
+  margin: 25vh auto;
+}
 .content {
   min-height: 85vh;
   margin-top: 50px;
@@ -143,15 +148,15 @@ select {
   left: 0;
 }
 .header li {
-  margin: 0 5px;
+  margin: 0;
   padding: 10px;
   width: 100px;
   border-radius: 0;
   border: none;
   color: white;
 }
-.header li:first-child {
-  margin-left: 0;
+.header li:nth-child(4):hover {
+  background: none;
 }
 .header li:hover {
   color: white;
@@ -180,7 +185,8 @@ select {
 @media only screen and (min-width: 401px) {
   body {
     /* background-color: #b2d6ff; Blue */
-    background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/60/79/4957a6acaa60ea7.jpg");
+    /* background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/60/79/4957a6acaa60ea7.jpg"); */
+    background-image: url("https://cdn.hipwallpaper.com/i/28/25/M1PqGQ.png");
     background-attachment: fixed;
     background-size: cover;
   }

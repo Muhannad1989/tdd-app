@@ -3,13 +3,16 @@
     <div class="content">
       <h1>User Details</h1>
       <HeaderApp />
-      <div v-if="user.length !== 0">
-        <UserInformation :selectedItem="user[0]" />
+      <div v-if="!isLoading">
+        <UserInformation :selectedItem="selectedUser[0]" />
         <ul class="other-users">
-          <li v-for="item in users" v-bind:key="item.id">
-            {{ item.name }} {{ item.id }}
+          <li v-for="item in items" v-bind:key="item.API">
+            {{ item.API }}
           </li>
         </ul>
+      </div>
+      <div v-if="isLoading">
+        <img class="loading" src="../assets/loading.gif" alt="loading" />
       </div>
     </div>
     <FooterApp />
@@ -20,37 +23,39 @@
 import HeaderApp from "../components/layout/HeaderApp.vue";
 import FooterApp from "../components/layout/FooterApp.vue";
 import UserInformation from "../components/UserInformation.vue";
-import ListItems from "../components/ListItems.vue";
 import axios from "axios";
 
 export default {
   name: "Detail",
   data() {
     return {
-      user: [],
-      users: []
+      selectedUser: [],
+      items: [],
+      isLoading: true
     };
   },
   components: {
     HeaderApp,
     UserInformation,
     FooterApp
-    // ListItems
   },
   async created() {
-    let res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    let res = await axios.get("https://api.publicapis.org/entries");
     // selected user
-    this.user = await res.data;
+    this.selectedUser = await res.data.entries;
     // all user
-    this.users = await res.data;
+    this.items = await res.data.entries;
     // set selected user
-    this.user = this.user.filter(ele => ele.id == this.$route.params.id);
+    this.selectedUser = this.selectedUser.filter(
+      ele => ele.API == this.$route.params.id
+    );
     // set many 3 random user
-    this.users = this.users.filter(ele => ele.id != this.$route.params.id);
-    // sort users randomly
-    this.users = this.users.sort(() => Math.random() - 0.5);
+    this.items = this.items.filter(ele => ele.API != this.$route.params.id);
+    // sort items randomly
+    this.items = this.items.sort(() => Math.random() - 0.5);
     //
-    this.users = this.users.splice(0, 3);
+    this.items = this.items.splice(0, 3);
+    this.isLoading = false;
   }
 };
 </script>

@@ -12,12 +12,16 @@
             <option>a to z</option>
             <option>z to a</option>
           </select>
+          <span>{{ selected }}</span>
         </form>
       </div>
       <div class="container">
-        <ul class="listItems">
+        <ul v-if="!isLoading" class="listItems">
           <ListItems v-for="user in users" :key="user.id" :user="user" />
         </ul>
+        <div v-if="isLoading">
+          <img class="loading" src="../assets/loading.gif" alt="loading" />
+        </div>
       </div>
     </div>
     <FooterApp />
@@ -36,8 +40,8 @@ export default {
     return {
       orginal: [],
       users: [],
-      loading: false,
-      selected: "normal"
+      isLoading: true,
+      selected: "test"
     };
   },
   components: {
@@ -45,35 +49,24 @@ export default {
     ListItems,
     FooterApp
   },
-  // computed: {
-  //   computedData() {
-  //     // eslint-disable-next-line no-console
-  //     console.log("run computed");
-  //     return this.users;
-  //   }
-  // },
-  // watch: {
-  //   users: function() {
-  //     this.users;
-  //   }
-  // },
+
   methods: {
     sorting() {
       if (this.selected == "normal") {
-        this.users = this.orginal;
+        this.users = [...this.orginal];
       } else if (this.selected == "a to z") {
-        this.users = this.orginal;
+        this.users = [...this.orginal];
         this.users.sort((a, b) => {
-          if (a.name > b.name) {
+          if (a.API > b.API) {
             return 1;
           } else {
             return -1;
           }
         });
       } else if (this.selected == "z to a") {
-        this.users = this.orginal;
+        this.users = [...this.orginal];
         this.users.sort((a, b) => {
-          if (a.name < b.name) {
+          if (a.API < b.API) {
             return 1;
           } else {
             return -1;
@@ -82,12 +75,14 @@ export default {
       }
     }
   },
+
   async created() {
-    // https://api.publicapis.org/entries?category=books
-    let res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    let selectedArray = res.data.slice(0, 10);
-    this.orginal = selectedArray;
-    this.users = selectedArray;
+    let res = await axios.get("https://api.publicapis.org/entries");
+    this.users = await res.data.entries;
+    this.users = this.users.sort(() => Math.random() - 0.5);
+    this.users = this.users.slice(0, 10);
+    this.orginal = [...this.users];
+    this.isLoading = false;
   }
 };
 </script>

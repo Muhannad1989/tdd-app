@@ -1,15 +1,15 @@
 <template>
   <div class="user-ticket">
-    <h2>{{ selectedItem.name }}</h2>
-    <p><span>Id: </span>{{ selectedItem.id }}</p>
-    <p><span>Phone: </span> {{ selectedItem.phone }}</p>
-    <p><span>Username: </span> {{ selectedItem.username }}</p>
-    <p><span>Website: </span> {{ selectedItem.website }}</p>
-    <p><span>Email: </span> {{ selectedItem.email }}</p>
-    <p><span>City:</span> {{ selectedItem.address.city }}</p>
-    <p><span>Street: </span> {{ selectedItem.address.street }}</p>
-    <p><span>Zipcode: </span> {{ selectedItem.address.zipcode }}</p>
-    <p><span>Company name: </span> {{ selectedItem.company.name }}</p>
+    <h2>{{ selectedItem.API }}</h2>
+    <p><span>API: </span>{{ selectedItem.API }}</p>
+    <p><span>Auth: </span> {{ selectedItem.Auth || "unknown" }}</p>
+    <p><span>Category: </span> {{ selectedItem.Category }}</p>
+    <p><span>Description: </span> {{ selectedItem.Description }}</p>
+    <p><span>HTTPS: </span> {{ selectedItem.HTTPS }}</p>
+    <p>
+      <span>Link: </span>
+      <a :href="selectedItem.Link" target="_blank">{{ selectedItem.Link }}</a>
+    </p>
   </div>
 </template>
 
@@ -22,5 +22,11 @@ export default {
 };
 </script>
 <style scoped>
-/*  */
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: brown;
+}
 </style>
