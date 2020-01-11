@@ -1,24 +1,32 @@
 <template>
   <div class="categories">
-    <HeaderApp />
     <div class="content">
-      <h1>Categories</h1>
+      <h1>Sorting by Categories</h1>
       <div class="container">
-        <ul v-if="!isLoading" class="listItems">
-          <ListItems v-for="user in users" :key="user.id" :user="user" />
-        </ul>
+        <div v-if="!isLoading">
+          <form>
+            Sorting by:
+            <select v-model="selected" @change="sortByCategory">
+              <option disabled value>Please select one</option>
+              <option v-for="category in categories" :key="category">{{
+                category
+              }}</option>
+            </select>
+            <span>{{ selected }}</span>
+          </form>
+          <ul class="listItems">
+            <ListItems v-for="item in items" :key="item.id" :item="item" />
+          </ul>
+        </div>
         <div v-if="isLoading">
           <img class="loading" src="../assets/loading.gif" alt="loading" />
         </div>
       </div>
     </div>
-    <FooterApp />
   </div>
 </template>
 
 <script>
-import HeaderApp from "../components/layout/HeaderApp.vue";
-import FooterApp from "../components/layout/FooterApp.vue";
 import ListItems from "../components/ListItems.vue";
 import axios from "axios";
 
@@ -26,25 +34,29 @@ export default {
   name: "Category",
   data() {
     return {
-      users: [],
+      categories: [],
+      items: [],
+      orginal: [],
       isLoading: true,
-      params: "Animals"
+      selected: "Animals"
     };
   },
+  methods: {
+    sortByCategory() {
+      this.items = [...this.orginal];
+      this.items = this.items.filter(ele => ele.Category == this.selected);
+    }
+  },
   components: {
-    HeaderApp,
-    ListItems,
-    FooterApp
+    ListItems
   },
   async created() {
     let res = await axios.get("https://api.publicapis.org/entries");
-    this.users = await res.data.entries;
-    // this.users = this.users.sort(() => Math.random() - 0.5);
-    // this.users = this.users.slice(0, 10);
-    this.users = this.users.filter(
-      item => item.Category == this.$route.params.name
-    );
-    this.params = this.$route.params.name;
+    this.categories = await res.data.entries;
+    this.items = await res.data.entries;
+    this.orginal = await res.data.entries;
+    this.categories = this.categories.map(ele => ele.Category);
+    this.categories = [...new Set(this.categories)];
     this.isLoading = false;
   }
 };

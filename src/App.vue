@@ -1,11 +1,20 @@
 <template>
   <div id="app">
+    <AppHeader />
     <router-view />
+    <AppFooter />
   </div>
 </template>
 <script>
+import AppHeader from "./components/layout/AppHeader.vue";
+import AppFooter from "./components/layout/AppFooter.vue";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    AppHeader,
+    AppFooter
+  }
 };
 </script>
 <style>
@@ -13,6 +22,11 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  background-image: url("https://cdn.hipwallpaper.com/i/28/25/M1PqGQ.png");
+  background-attachment: fixed;
+  background-size: cover;
 }
 .menu {
   margin: 0;
@@ -31,10 +45,6 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  /* background-color: #b2d6ff; */
-}
-a {
-  color: red;
 }
 ul {
   list-style: none;
@@ -42,7 +52,6 @@ ul {
 li {
   padding: 10px;
   margin: 5px auto;
-  /* border: 1px solid black; */
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   width: 345px;
@@ -107,36 +116,7 @@ select {
   border: none;
 }
 
-/* random */
-.user-ticket {
-  background-color: rgba(0, 0, 20, 0.25);
-  max-width: 400px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 8vh auto;
-  color: white;
-}
-
-.user-ticket h2 {
-  margin: 5px auto;
-}
-.user-ticket p {
-  margin: 15px auto;
-}
-.random-button {
-  display: flex;
-  justify-content: center;
-}
-
-/* Detail page */
-.other-users {
-  margin: 30px auto;
-}
-
-/* header */
 .header ul {
-  /* background: #75b6ff; */
   background-color: rgba(0, 0, 20, 0.2);
   display: flex;
   justify-content: flex-start;
@@ -162,33 +142,8 @@ select {
   color: white;
 }
 
-/* Mobile Styles */
-@media only screen and (max-width: 400px) {
-  body {
-    background-color: #f09a9d; /* Red */
-  }
-  .header ul li {
-    border: none;
-    width: 100vw;
-    border-bottom: 1px solid black;
-  }
-}
-
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  body {
-    /* background-color: #f5cf8e;  */
-  }
-}
-
-/* Desktop Styles */
-@media only screen and (min-width: 401px) {
-  body {
-    /* background-color: #b2d6ff; Blue */
-    /* background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/60/79/4957a6acaa60ea7.jpg"); */
-    background-image: url("https://cdn.hipwallpaper.com/i/28/25/M1PqGQ.png");
-    background-attachment: fixed;
-    background-size: cover;
-  }
+/* Detail page */
+.other-users {
+  margin: 30px auto;
 }
 </style>

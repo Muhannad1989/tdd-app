@@ -2,9 +2,8 @@
   <div class="detail">
     <div class="content">
       <h1>User Details</h1>
-      <HeaderApp />
       <div v-if="!isLoading">
-        <UserInformation :selectedItem="selectedUser[0]" />
+        <ItemInformation :selectedItem="selectedItem[0]" />
         <ul class="other-users">
           <li v-for="item in items" v-bind:key="item.API">
             {{ item.API }}
@@ -15,38 +14,33 @@
         <img class="loading" src="../assets/loading.gif" alt="loading" />
       </div>
     </div>
-    <FooterApp />
   </div>
 </template>
 
 <script>
-import HeaderApp from "../components/layout/HeaderApp.vue";
-import FooterApp from "../components/layout/FooterApp.vue";
-import UserInformation from "../components/UserInformation.vue";
+import ItemInformation from "../components/ItemInformation.vue";
 import axios from "axios";
 
 export default {
   name: "Detail",
   data() {
     return {
-      selectedUser: [],
+      selectedItem: [],
       items: [],
       isLoading: true
     };
   },
   components: {
-    HeaderApp,
-    UserInformation,
-    FooterApp
+    ItemInformation
   },
   async created() {
     let res = await axios.get("https://api.publicapis.org/entries");
     // selected user
-    this.selectedUser = await res.data.entries;
+    this.selectedItem = await res.data.entries;
     // all user
     this.items = await res.data.entries;
     // set selected user
-    this.selectedUser = this.selectedUser.filter(
+    this.selectedItem = this.selectedItem.filter(
       ele => ele.API == this.$route.params.id
     );
     // set many 3 random user

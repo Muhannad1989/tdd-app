@@ -17,7 +17,7 @@
 import Vue from "vue";
 
 export default {
-  name: "UserInformation",
+  name: "ItemInformation",
   props: ["selectedItem"]
 };
 </script>
@@ -28,5 +28,19 @@ a {
 }
 a:hover {
   color: brown;
+}
+.user-ticket {
+  background-color: rgba(0, 0, 20, 0.25);
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 8vh auto;
+  color: white;
+}
+.user-ticket h2 {
+  margin: 5px auto;
+}
+.user-ticket p {
+  margin: 15px auto;
 }
 </style>

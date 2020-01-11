@@ -1,16 +1,16 @@
 <template>
-  <router-link tag="li" :to="{ path: '/detail/' + user.API }">
-    {{ user.API }}
+  <router-link tag="li" :to="{ path: '/detail/' + item.API }">
+    {{ item.API }}
   </router-link>
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 
 export default {
-  name: 'ListItems',
-  props: ['user'],
+  name: "ListItems",
+  props: ["item"]
 };
 </script>
 
-<style scoped></style>
+<style></style>

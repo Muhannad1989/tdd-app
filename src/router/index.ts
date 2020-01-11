@@ -20,14 +20,14 @@ const routes = [
     component: Random
   },
   {
+    path: "/category",
+    name: "Category",
+    component: Category
+  },
+  {
     path: "/detail/:id",
     name: "Detail",
     component: Detail
-  },
-  {
-    path: "/category/:name",
-    name: "Category",
-    component: Category
   }
 ];
 
