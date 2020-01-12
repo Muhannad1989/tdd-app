@@ -3,16 +3,7 @@
     <div class="content">
       <h1>Home page</h1>
       <div class="container">
-        <form>
-          Sorting by:
-          <select v-model="selected" @change="sorting">
-            <option disabled value>Please select one</option>
-            <option>default</option>
-            <option>a to z</option>
-            <option>z to a</option>
-          </select>
-          <span>{{ selected }}</span>
-        </form>
+        <Selector :options="options" v-on:select-item="sorting" />
       </div>
       <div class="container">
         <ul v-if="!isLoading" class="listItems">
@@ -29,6 +20,7 @@
 <script lang="ts">
 import Vue from "vue";
 import ListItems from "../components/ListItems.vue";
+import Selector from "../components/Selector.vue";
 import axios from "axios";
 
 interface Data {
@@ -46,29 +38,31 @@ interface HomeData {
   items: Data[];
   isLoading: boolean;
   selected: string;
+  options: string[];
 }
 
 export default Vue.extend({
   name: "Home",
   data(): HomeData {
     return {
-      fetchedApiData: [], // orginal data
-      items: [], // data could be
+      fetchedApiData: [],
+      items: [],
       isLoading: true,
-      selected: "default"
+      selected: "",
+      options: ["default", "a to z", "z to a"]
     };
   },
   components: {
-    ListItems
+    ListItems,
+    Selector
   },
 
   methods: {
-    sorting(): void {
-      // case 1
-      if (this.selected == "default") {
+    sorting(value: string): void {
+      if (value == "default") {
         // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
-      } else if (this.selected == "a to z") {
+      } else if (value == "a to z") {
         // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
         // sorting data alphabetically from A to Z
@@ -79,7 +73,7 @@ export default Vue.extend({
             return -1;
           }
         });
-      } else if (this.selected == "z to a") {
+      } else if (value == "z to a") {
         // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
         // sorting data alphabetically from Z to A

@@ -1,5 +1,5 @@
 <template>
-  <div class="user-ticket">
+  <div class="item-information">
     <h2>{{ selectedItem.API }}</h2>
     <p><span>API: </span>{{ selectedItem.API }}</p>
     <p><span>Auth: </span> {{ selectedItem.Auth || "unknown" }}</p>
@@ -26,21 +26,22 @@ a {
   color: white;
   text-decoration: none;
 }
-a:hover {
-  color: brown;
-}
-.user-ticket {
+.item-information {
   background-color: rgba(0, 0, 20, 0.25);
   max-width: 400px;
   padding: 10px;
   border-radius: 5px;
   margin: 8vh auto;
   color: white;
+  text-align: center;
 }
-.user-ticket h2 {
+.item-information h2 {
   margin: 5px auto;
 }
-.user-ticket p {
+.item-information p {
   margin: 15px auto;
+}
+a:hover {
+  color: #ffc107;
 }
 </style>

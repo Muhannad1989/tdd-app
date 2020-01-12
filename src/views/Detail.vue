@@ -4,7 +4,7 @@
       <h1>User Details</h1>
       <div v-if="!isLoading">
         <ItemInformation :selectedItem="selectedItem[0]" />
-        <ul class="other-users">
+        <ul class="other-items">
           <li v-for="item in items" v-bind:key="item.API">{{ item.API }}</li>
         </ul>
       </div>
@@ -51,21 +51,25 @@ export default Vue.extend({
     // fetch API
     let res = await axios.get("https://api.publicapis.org/entries");
     // selected user
-    this.selectedItem = await res.data.entries;
-    // all user
     this.items = await res.data.entries;
-    // set selected user
+    this.selectedItem = [...this.items];
+    // select item by params
     this.selectedItem = this.selectedItem.filter(
       ele => ele.API == this.$route.params.id
     );
-    // set many 3 random user
+    // remove the selected item from the list
     this.items = this.items.filter(ele => ele.API != this.$route.params.id);
     // sort items randomly
     this.items = this.items.sort(() => Math.random() - 0.5);
-    //
+    // take the item
     this.items = this.items.splice(0, 3);
+    // turn off the loading
     this.isLoading = false;
   }
 });
 </script>
-<style></style>
+<style>
+.other-items {
+  margin: 30px auto;
+}
+</style>

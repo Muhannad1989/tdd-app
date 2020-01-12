@@ -2,10 +2,10 @@
   <div class="random">
     <div class="content">
       <h1>Randomizer</h1>
-      <div class="random-button">
+      <div class="random-continer">
         <button v-on:click="random()">Random Item</button>
       </div>
-      <ItemInformation v-if="!isLoading" :selectedItem="item" />
+      <ItemInformation v-if="!isLoading" :selectedItem="item[0]" />
       <div v-if="isLoading">
         <img class="loading" src="../assets/loading.gif" alt="loading" />
       </div>
@@ -67,7 +67,7 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
-.random-button {
+.random-continer {
   display: flex;
   justify-content: center;
 }

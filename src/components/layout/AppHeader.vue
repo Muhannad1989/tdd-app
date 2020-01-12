@@ -5,7 +5,7 @@
         <figure class="toggle-button" @click="toggleNav">
           <span>|||</span>
         </figure>
-        <div id="con" class="con">
+        <div id="routes" class="routes">
           <router-link tag="li" to="/">Home</router-link>
           <router-link tag="li" to="/random">Random</router-link>
           <router-link tag="li" to="/category">Category</router-link>
@@ -30,12 +30,14 @@ export default Vue.extend({
 
   methods: {
     toggleNav(): void {
-      let selected: any = document.getElementById("con");
+      // select element from html dom
+      let selected: any = document.getElementById("routes");
       if (this.display) {
         selected.classList.remove("hidden");
       } else {
         selected.classList.add("hidden");
       }
+      // set display to opposite value
       this.display = !this.display;
     }
   }
@@ -54,11 +56,32 @@ export default Vue.extend({
   border: "none";
   margin: 0;
   transform: rotate(90deg);
+  transition: transform 0.3s linear;
 }
 .toggle-button span:hover {
   cursor: pointer;
 }
-.con {
+.header ul {
+  background-color: rgba(0, 0, 20, 0.2);
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.header li {
+  margin: 0;
+  padding: 10px;
+  width: 100px;
+  border-radius: 0;
+  border: none;
+  color: white;
+  font-size: 18px;
+}
+.routes {
   display: contents;
 }
 .hidden {
@@ -68,7 +91,7 @@ export default Vue.extend({
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
   .header ul {
-    background-color: rgba(0, 0, 20, 1);
+    background-color: rgba(170, 163, 0, 0.9);
   }
   .header ul li {
     border: none;
@@ -77,12 +100,6 @@ export default Vue.extend({
   }
   .toggle-button {
     display: block;
-  }
-  .dropdown-content {
-    min-width: 100%;
-  }
-  ul {
-    background-color: rgba(0, 0, 20, 0.8);
   }
   .toggle-button {
     transform: rotate(0deg);
