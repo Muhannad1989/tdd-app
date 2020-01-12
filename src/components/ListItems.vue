@@ -7,10 +7,10 @@
 <script>
 import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "ListItems",
   props: ["item"]
-};
+});
 </script>
 
 <style></style>

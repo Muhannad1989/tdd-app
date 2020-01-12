@@ -7,7 +7,7 @@
           Sorting by:
           <select v-model="selected" @change="sorting">
             <option disabled value>Please select one</option>
-            <option>normal</option>
+            <option>default</option>
             <option>a to z</option>
             <option>z to a</option>
           </select>
@@ -26,18 +26,36 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import ListItems from "../components/ListItems.vue";
 import axios from "axios";
 
-export default {
+interface Data {
+  API?: string;
+  Description?: string;
+  Auth?: string;
+  HTTPS?: boolean;
+  Cors?: string;
+  Link?: string;
+  Category?: string;
+}
+
+interface HomeData {
+  fetchedApiData: Data[];
+  items: Data[];
+  isLoading: boolean;
+  selected: string;
+}
+
+export default Vue.extend({
   name: "Home",
-  data() {
+  data(): HomeData {
     return {
-      fetchedApiData: [],
-      items: [],
+      fetchedApiData: [], // orginal data
+      items: [], // data could be
       isLoading: true,
-      selected: "test"
+      selected: "default"
     };
   },
   components: {
@@ -45,22 +63,28 @@ export default {
   },
 
   methods: {
-    sorting() {
-      if (this.selected == "normal") {
+    sorting(): void {
+      // case 1
+      if (this.selected == "default") {
+        // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
       } else if (this.selected == "a to z") {
+        // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
+        // sorting data alphabetically from A to Z
         this.items.sort((a, b) => {
-          if (a.API > b.API) {
+          if ((a.API as string) > (b.API as string)) {
             return 1;
           } else {
             return -1;
           }
         });
       } else if (this.selected == "z to a") {
+        // take a copy from the orginal data (reset)
         this.items = [...this.fetchedApiData];
+        // sorting data alphabetically from Z to A
         this.items.sort((a, b) => {
-          if (a.API < b.API) {
+          if ((a.API as string) < (b.API as string)) {
             return 1;
           } else {
             return -1;
@@ -71,14 +95,19 @@ export default {
   },
 
   async created() {
+    // fetching data from api
     let res = await axios.get("https://api.publicapis.org/entries");
     this.items = await res.data.entries;
+    // generate random array
     this.items = this.items.sort(() => Math.random() - 0.5);
+    // take 10 items from generated array
     this.items = this.items.slice(0, 10);
+    // clean reapeted items
     this.fetchedApiData = [...this.items];
+    // stop loading
     this.isLoading = false;
   }
-};
+});
 </script>
 
 <style></style>

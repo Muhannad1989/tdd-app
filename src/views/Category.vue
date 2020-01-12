@@ -26,13 +26,31 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import ListItems from "../components/ListItems.vue";
 import axios from "axios";
 
-export default {
+interface Data {
+  API?: string;
+  Description?: string;
+  Auth?: string;
+  HTTPS?: boolean;
+  Cors?: string;
+  Link?: string;
+  Category?: string;
+}
+interface CategoryData {
+  categories: any[];
+  items: Data[];
+  orginal: Data[];
+  isLoading: boolean;
+  selected: string;
+}
+
+export default Vue.extend({
   name: "Category",
-  data() {
+  data(): CategoryData {
     return {
       categories: [],
       items: [],
@@ -42,7 +60,7 @@ export default {
     };
   },
   methods: {
-    sortByCategory() {
+    sortByCategory(): void {
       this.items = [...this.orginal];
       this.items = this.items.filter(ele => ele.Category == this.selected);
     }
@@ -55,11 +73,11 @@ export default {
     this.categories = await res.data.entries;
     this.items = await res.data.entries;
     this.orginal = await res.data.entries;
-    this.categories = this.categories.map(ele => ele.Category);
+    this.categories = this.categories.map(ele => ele.Category as string);
     this.categories = [...new Set(this.categories)];
     this.isLoading = false;
   }
-};
+});
 </script>
 
 <style></style>

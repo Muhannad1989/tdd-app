@@ -5,9 +5,7 @@
       <div v-if="!isLoading">
         <ItemInformation :selectedItem="selectedItem[0]" />
         <ul class="other-users">
-          <li v-for="item in items" v-bind:key="item.API">
-            {{ item.API }}
-          </li>
+          <li v-for="item in items" v-bind:key="item.API">{{ item.API }}</li>
         </ul>
       </div>
       <div v-if="isLoading">
@@ -17,13 +15,29 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import ItemInformation from "../components/ItemInformation.vue";
 import axios from "axios";
 
-export default {
+interface Data {
+  API?: string;
+  Description?: string;
+  Auth?: string;
+  HTTPS?: boolean;
+  Cors?: string;
+  Link?: string;
+  Category?: string;
+}
+
+interface DetailData {
+  selectedItem: Data[];
+  items: Data[];
+  isLoading: boolean;
+}
+export default Vue.extend({
   name: "Detail",
-  data() {
+  data(): DetailData {
     return {
       selectedItem: [],
       items: [],
@@ -34,6 +48,7 @@ export default {
     ItemInformation
   },
   async created() {
+    // fetch API
     let res = await axios.get("https://api.publicapis.org/entries");
     // selected user
     this.selectedItem = await res.data.entries;
@@ -51,6 +66,6 @@ export default {
     this.items = this.items.splice(0, 3);
     this.isLoading = false;
   }
-};
+});
 </script>
-<style scoped></style>
+<style></style>

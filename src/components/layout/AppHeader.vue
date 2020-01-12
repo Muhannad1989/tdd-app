@@ -15,18 +15,22 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+interface AppHeaderData {
+  display: boolean;
+}
+import Vue from "vue";
+export default Vue.extend({
   name: "HeaderApp",
-  data() {
+  data(): AppHeaderData {
     return {
       display: true
     };
   },
 
   methods: {
-    toggleNav() {
-      let selected = document.getElementById("con");
+    toggleNav(): void {
+      let selected: any = document.getElementById("con");
       if (this.display) {
         selected.classList.remove("hidden");
       } else {
@@ -35,7 +39,7 @@ export default {
       this.display = !this.display;
     }
   }
-};
+});
 </script>
 
 <style scoped>

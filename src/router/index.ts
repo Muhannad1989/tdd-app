@@ -37,4 +37,22 @@ const router = new VueRouter({
   routes
 });
 
+// function getRoutesList(routes: string, pre: string): object[] {
+//   return routes.reduce((array: Array<string>, route: object) => {
+//     const path: string = `${pre}${route.path}`;
+
+//     if (route.path !== "*") {
+//       array.push(path);
+//     }
+
+//     if (route.children) {
+//       array.push(...getRoutesList(route.children, `${path}/`));
+//     }
+
+//     return array;
+//   }, []);
+// }
+
+// let arr = getRoutesList(router.options.routes, "http://localhost:8080");
+
 export default router;

@@ -16,10 +16,10 @@
 <script>
 import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "ItemInformation",
   props: ["selectedItem"]
-};
+});
 </script>
 <style scoped>
 a {
