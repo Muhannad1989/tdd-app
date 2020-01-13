@@ -98,7 +98,7 @@ export default Vue.extend({
     border-bottom: 1px solid black;
   }
   .toggle-button {
-    width: 68px;
+    width: 40px;
     display: block;
     height: 40px;
     text-align: center;
