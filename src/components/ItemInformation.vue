@@ -34,6 +34,7 @@ a {
   margin: 8vh auto;
   color: white;
   text-align: center;
+  overflow: hidden;
 }
 .item-information h2 {
   margin: 5px auto;

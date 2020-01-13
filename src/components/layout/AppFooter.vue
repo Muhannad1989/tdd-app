@@ -83,7 +83,7 @@ export default Vue.extend({
     display: block;
     margin: 0 auto;
     border-bottom: 1px solid white;
-    width: 200px;
+    width: 100%;
   }
 }
 </style>

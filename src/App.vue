@@ -33,6 +33,7 @@ h1,
 h2 {
   text-align: center;
   color: wheat;
+  padding: 20px;
 }
 ul {
   list-style: none;

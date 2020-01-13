@@ -104,4 +104,8 @@ export default Vue.extend({
 });
 </script>
 
-<style></style>
+<style scoped>
+.home {
+  margin: 20px;
+}
+</style>

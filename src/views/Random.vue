@@ -67,6 +67,9 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
+.random {
+  margin: 20px;
+}
 .random-continer {
   display: flex;
   justify-content: center;

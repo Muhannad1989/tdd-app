@@ -1,17 +1,15 @@
 <template>
   <div class="header">
-    <nav>
-      <ul ref="nav">
-        <figure class="toggle-button" @click="toggleNav">
-          <span>|||</span>
-        </figure>
-        <div id="routes" class="routes">
-          <router-link tag="li" to="/">Home</router-link>
-          <router-link tag="li" to="/random">Random</router-link>
-          <router-link tag="li" to="/category">Category</router-link>
-        </div>
-      </ul>
-    </nav>
+    <ul ref="nav">
+      <figure class="toggle-button" @click="toggleNav">
+        <span>|||</span>
+      </figure>
+      <div id="routes" class="routes">
+        <router-link tag="li" to="/">Home</router-link>
+        <router-link tag="li" to="/random">Random</router-link>
+        <router-link tag="li" to="/category">Category</router-link>
+      </div>
+    </ul>
   </div>
 </template>
 
@@ -45,6 +43,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.router-link-exact-active {
+  background: #5f75ff;
+}
 .toggle-button {
   padding: 0;
   width: 40px;
@@ -94,8 +95,8 @@ export default Vue.extend({
     background-color: rgba(170, 163, 0, 0.9);
   }
   .header ul li {
-    border: none;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     border-bottom: 1px solid black;
   }
   .toggle-button {
