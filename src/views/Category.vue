@@ -4,6 +4,8 @@
       <h1>Sorting by Categories</h1>
       <div class="container">
         <Selector :options="categories" v-on:select-item="sortByCategory" />
+      </div>
+      <div class="container">
         <ul v-if="!isLoading">
           <ListItems
             :path="'/detail/' + item.API"

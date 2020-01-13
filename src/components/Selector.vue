@@ -31,7 +31,7 @@ export default Vue.extend({
 <style scoped>
 form {
   margin: 20px;
-  width: 425px;
+  min-width: 425px;
   background: rgba(0, 0, 20, 0.4);
   border-radius: 5px;
   padding: 10px;
@@ -60,6 +60,9 @@ select {
   form p,
   form span {
     display: block;
+  }
+  form {
+    min-width: auto;
   }
 }
 </style>

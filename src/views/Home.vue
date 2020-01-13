@@ -1,10 +1,12 @@
 <template>
   <div class="home">
     <div class="content">
-      <h1>Home page</h1>
+      <h1>Get 10 random items</h1>
       <div class="container">
         <Selector :options="options" v-on:select-item="sorting" />
-        <ul v-if="!isLoading" class="listItems">
+      </div>
+      <div class="container">
+        <ul class="listItems" v-if="!isLoading">
           <ListItems
             v-for="item in items"
             :path="'/detail/' + item.API"
@@ -12,8 +14,8 @@
             :item="item"
           />
         </ul>
-        <Loading v-if="isLoading" />
       </div>
+      <Loading v-if="isLoading" />
     </div>
   </div>
 </template>

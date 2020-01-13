@@ -51,7 +51,6 @@ export default Vue.extend({
 <style scoped>
 .footer {
   background: #2d3f47;
-  /* padding: 15px; */
   left: 0;
   top: 0;
   width: 100%;
@@ -76,7 +75,7 @@ export default Vue.extend({
 .footer .copy-right p {
   padding: 5px;
   font-size: 13px;
-  color: black;
+  color: gainsboro;
 }
 @media only screen and (max-width: 400px) {
   .footer a {

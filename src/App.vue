@@ -65,10 +65,11 @@ button {
   margin: 30px auto;
   border-radius: 5px;
   border: 1px solid white;
+  transition: background-color 0.3s linear;
 }
 button:hover {
   cursor: pointer;
-  background: #0366d6;
+  background-color: #0366d6;
   color: white;
   border: 1px solid #0366d6;
 }
@@ -83,6 +84,22 @@ button:hover {
 .content {
   min-height: 590px;
   margin-top: 100px;
+}
+
+/* scrollbar style  */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #0003ce;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00026d;
 }
 
 @media only screen and (max-width: 400px) {

@@ -1,12 +1,12 @@
 <template>
   <div class="detail">
     <div class="content">
-      <!-- <h1>User Details</h1> -->
+      <h1>User Details</h1>
       <div class="container">
         <div v-if="!isLoading">
           <h2>Item Information</h2>
           <ItemInformation :selectedItem="selectedItem[0]" />
-          <h2>List Items</h2>
+          <h2>Other Roandom Items</h2>
           <ul class="other-items">
             <ListItems
               v-for="item in items"

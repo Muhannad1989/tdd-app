@@ -1,7 +1,7 @@
 <template>
   <div class="random">
     <div class="content">
-      <h1>Randomizer</h1>
+      <h1>Random Item</h1>
       <div class="container">
         <button v-on:click="random()">Random Item</button>
       </div>
