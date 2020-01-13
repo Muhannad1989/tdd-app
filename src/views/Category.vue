@@ -3,16 +3,17 @@
     <div class="content">
       <h1>Sorting by Categories</h1>
       <div class="container">
-        <div v-if="!isLoading">
-          <Selector :options="categories" v-on:select-item="sortByCategory" />
-          <ul class="listItems">
-            <ListItems v-for="item in items" :key="item.id" :item="item" />
-          </ul>
-        </div>
-        <div v-if="isLoading">
-          <img class="loading" src="../assets/loading.gif" alt="loading" />
-        </div>
+        <Selector :options="categories" v-on:select-item="sortByCategory" />
+        <ul v-if="!isLoading">
+          <ListItems
+            :path="'/detail/' + item.API"
+            v-for="item in items"
+            :key="item.id"
+            :item="item"
+          />
+        </ul>
       </div>
+      <Loading v-if="isLoading" />
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@
 import Vue from "vue";
 import Selector from "../components/Selector.vue";
 import ListItems from "../components/ListItems.vue";
+import Loading from "../components/Loading.vue";
 import axios from "axios";
 
 interface Data {
@@ -61,7 +63,8 @@ export default Vue.extend({
   },
   components: {
     ListItems,
-    Selector
+    Selector,
+    Loading
   },
   async created() {
     // fetch Api data

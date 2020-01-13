@@ -19,6 +19,7 @@ export default Vue.extend({
 });
 </script>
 <style>
+/* global style */
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +34,6 @@ h1,
 h2 {
   text-align: center;
   color: wheat;
-  padding: 20px;
 }
 ul {
   list-style: none;
@@ -81,15 +81,10 @@ button:hover {
 }
 
 .content {
-  min-height: 85vh;
-  margin-top: 50px;
+  min-height: 590px;
+  margin-top: 100px;
 }
 
-.loading {
-  display: block;
-  width: 60px;
-  margin: 25vh auto;
-}
 @media only screen and (max-width: 400px) {
   li {
     width: 220px;

@@ -2,13 +2,13 @@
   <div class="random">
     <div class="content">
       <h1>Randomizer</h1>
-      <div class="random-continer">
+      <div class="container">
         <button v-on:click="random()">Random Item</button>
       </div>
-      <ItemInformation v-if="!isLoading" :selectedItem="item[0]" />
-      <div v-if="isLoading">
-        <img class="loading" src="../assets/loading.gif" alt="loading" />
+      <div v-if="!isLoading">
+        <ItemInformation v-if="!isLoading" :selectedItem="item[0]" />
       </div>
+      <Loading v-if="isLoading" />
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@
 <script lang="ts">
 import Vue from "vue";
 import ItemInformation from "../components/ItemInformation.vue";
+import Loading from "../components/Loading.vue";
 import axios from "axios";
 
 interface Data {
@@ -43,7 +44,8 @@ export default Vue.extend({
     };
   },
   components: {
-    ItemInformation
+    ItemInformation,
+    Loading
   },
   async created() {
     // fetching Api
@@ -66,12 +68,4 @@ export default Vue.extend({
   }
 });
 </script>
-<style scoped>
-.random {
-  margin: 20px;
-}
-.random-continer {
-  display: flex;
-  justify-content: center;
-}
-</style>
+<style></style>

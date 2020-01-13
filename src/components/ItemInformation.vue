@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 
 export default Vue.extend({
@@ -22,10 +22,6 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
-a {
-  color: white;
-  text-decoration: none;
-}
 .item-information {
   background-color: rgba(0, 0, 20, 0.25);
   max-width: 400px;
@@ -42,7 +38,18 @@ a {
 .item-information p {
   margin: 15px auto;
 }
-a:hover {
+span {
+  color: #74b1f7;
+  font-size: 16px;
+  font-weight: bold;
+}
+a {
+  color: white;
   color: #ffc107;
+  text-decoration: none;
+  word-break: break-all;
+}
+a:hover {
+  color: #a07800;
 }
 </style>

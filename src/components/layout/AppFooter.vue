@@ -1,53 +1,53 @@
 <template>
   <div class="footer">
-    <a v-for="(ele, index) in routes" :key="index" :href="links[index]">{{
-      ele.name
-    }}</a>
+    <a v-for="(ele, index) in routes" :key="index" :href="links[index]">
+      {{ ele.name }}
+    </a>
     <div class="copy-right">
       <p>Copyright © 2020 Muhannad Judah. All Rights Reserved</p>
     </div>
   </div>
 </template>
-
-<script>
+<script lang="ts">
 import Vue from "vue";
-
+interface DataFooter {
+  links: string[];
+  routes: object[];
+}
 export default Vue.extend({
   name: "FooterApp",
-
-  data() {
+  data(): DataFooter {
     return {
       links: [],
-      routes: this.$router.options.routes.slice(0, 3)
+      routes: (this as any).$router.options.routes.slice(0, 3)
     };
   },
   created() {
     this.links = this.getRoutesList(
-      this.$router.options.routes,
+      (this as any).$router.options.routes,
       "http://localhost:8080"
     );
   },
   methods: {
-    getRoutesList(routes, pre) {
-      return routes.reduce((array, route) => {
-        const path = `${pre}${route.path}`;
-        if (route.path !== "*") {
-          array.push(path);
-          // console.log()
-        }
-        if (route.children) {
-          array.push(...getRoutesList(route.children, `${path}/`));
-        }
-        return array;
-      }, []);
-    },
-    filterRoutes() {
-      routes;
+    getRoutesList(routes: { path: string }[], pre: string) {
+      return routes.reduce(
+        (array: string[], route: { path: string; children?: any }) => {
+          const path: string = `${pre}${route.path}`;
+          if (route.path !== "*") {
+            array.push(path);
+            // console.log()
+          }
+          if (route.children) {
+            array.push(...this.getRoutesList(route.children, `${path}/`));
+          }
+          return array;
+        },
+        []
+      );
     }
   }
 });
 </script>
-
 <style scoped>
 .footer {
   background: #2d3f47;

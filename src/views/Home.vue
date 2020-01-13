@@ -4,14 +4,15 @@
       <h1>Home page</h1>
       <div class="container">
         <Selector :options="options" v-on:select-item="sorting" />
-      </div>
-      <div class="container">
         <ul v-if="!isLoading" class="listItems">
-          <ListItems v-for="item in items" :key="item.id" :item="item" />
+          <ListItems
+            v-for="item in items"
+            :path="'/detail/' + item.API"
+            :key="item.id"
+            :item="item"
+          />
         </ul>
-        <div v-if="isLoading">
-          <img class="loading" src="../assets/loading.gif" alt="loading" />
-        </div>
+        <Loading v-if="isLoading" />
       </div>
     </div>
   </div>
@@ -21,6 +22,7 @@
 import Vue from "vue";
 import ListItems from "../components/ListItems.vue";
 import Selector from "../components/Selector.vue";
+import Loading from "../components/Loading.vue";
 import axios from "axios";
 
 interface Data {
@@ -49,12 +51,13 @@ export default Vue.extend({
       items: [],
       isLoading: true,
       selected: "",
-      options: ["default", "a to z", "z to a"]
+      options: ["a to z", "z to a", "default"]
     };
   },
   components: {
     ListItems,
-    Selector
+    Selector,
+    Loading
   },
 
   methods: {
@@ -104,8 +107,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.home {
-  margin: 20px;
-}
-</style>
+<style></style>

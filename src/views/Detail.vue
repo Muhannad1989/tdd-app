@@ -1,15 +1,21 @@
 <template>
   <div class="detail">
     <div class="content">
-      <h1>User Details</h1>
-      <div v-if="!isLoading">
-        <ItemInformation :selectedItem="selectedItem[0]" />
-        <ul class="other-items">
-          <li v-for="item in items" v-bind:key="item.API">{{ item.API }}</li>
-        </ul>
-      </div>
-      <div v-if="isLoading">
-        <img class="loading" src="../assets/loading.gif" alt="loading" />
+      <!-- <h1>User Details</h1> -->
+      <div class="container">
+        <div v-if="!isLoading">
+          <h2>Item Information</h2>
+          <ItemInformation :selectedItem="selectedItem[0]" />
+          <h2>List Items</h2>
+          <ul class="other-items">
+            <ListItems
+              v-for="item in items"
+              v-bind:key="item.API"
+              :item="item"
+            />
+          </ul>
+        </div>
+        <Loading v-if="isLoading" />
       </div>
     </div>
   </div>
@@ -18,6 +24,8 @@
 <script lang="ts">
 import Vue from "vue";
 import ItemInformation from "../components/ItemInformation.vue";
+import ListItems from "../components/ListItems.vue";
+import Loading from "../components/Loading.vue";
 import axios from "axios";
 
 interface Data {
@@ -45,7 +53,9 @@ export default Vue.extend({
     };
   },
   components: {
-    ItemInformation
+    ItemInformation,
+    ListItems,
+    Loading
   },
   async created() {
     // fetch API
@@ -68,8 +78,4 @@ export default Vue.extend({
   }
 });
 </script>
-<style>
-.other-items {
-  margin: 30px auto;
-}
-</style>
+<style></style>

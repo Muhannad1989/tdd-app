@@ -1,6 +1,6 @@
 <template>
   <form>
-    Sorting by:
+    <p>Sorting by:</p>
     <select v-model="selected" v-on:change="$emit('select-item', selected)">
       <option disabled value>Please select one</option>
       <option v-for="(option, index) in options" :key="index">{{
@@ -38,6 +38,13 @@ form {
   color: wheat;
   text-align: center;
 }
+form p {
+  display: inline-block;
+}
+form p,
+form span {
+  display: inline-block;
+}
 select {
   color: black;
   width: 150px;
@@ -47,5 +54,12 @@ select {
   margin: 5px 10px;
   text-align: center;
   border: none;
+}
+
+@media only screen and (max-width: 400px) {
+  form p,
+  form span {
+    display: block;
+  }
 }
 </style>
