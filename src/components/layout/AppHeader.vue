@@ -1,19 +1,25 @@
 <template>
   <div class="header">
-    <ul ref="nav">
-      <figure class="toggle-button" @click="toggleNav">
-        <span>|||</span>
-      </figure>
-      <div id="routes" class="routes">
-        <router-link tag="li" to="/">Home</router-link>
-        <router-link tag="li" to="/random">Random</router-link>
-        <router-link tag="li" to="/category">Category</router-link>
-      </div>
+    <div id="toggle" class="toggle-button" @click="toggleNav">
+      <span>|||</span>
+    </div>
+    <ul id="routes">
+      <router-link tag="li" to="/">Home</router-link>
+      <router-link tag="li" to="/random">Random</router-link>
+      <router-link tag="li" to="/category">Category</router-link>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
+window.addEventListener("resize", event => {
+  let toggle: any = document.getElementById("toggle");
+  if (window.screen.width < 401) {
+    toggle.classList.remove("hidden");
+  } else {
+    toggle.classList.add("hidden");
+  }
+});
 interface AppHeaderData {
   display: boolean;
 }
@@ -43,50 +49,42 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+/* active link */
 .router-link-exact-active {
   background: #5f75ff;
 }
-.toggle-button {
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding-top: 5px;
-  font-size: 25px;
-  font-weight: bold;
-  border: "none";
-  margin: 0;
-  transform: rotate(90deg);
-  transition: transform 0.3s linear;
-}
-.toggle-button span:hover {
-  cursor: pointer;
-}
-.header ul {
-  background-color: rgba(0, 0, 20, 0.2);
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 0;
-  width: 100%;
+
+.header {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+}
+.header ul {
+  background-color: rgba(0, 0, 20, 0.2);
 }
 .header li {
   margin: 0;
-  padding: 10px;
   width: 100px;
   border-radius: 0;
   border: none;
   color: white;
   font-size: 18px;
 }
-.routes {
-  display: contents;
+.toggle-button {
+  display: none;
 }
 .hidden {
   display: none;
+}
+
+/* All screens style except Mobile  */
+@media only screen and (min-width: 401px) {
+  .header ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 /* Mobile Styles */
@@ -100,10 +98,17 @@ export default Vue.extend({
     border-bottom: 1px solid black;
   }
   .toggle-button {
+    width: 68px;
     display: block;
+    height: 40px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: "none";
+    transform: rotate(90deg);
   }
-  .toggle-button {
-    transform: rotate(0deg);
+  .toggle-button span:hover {
+    cursor: pointer;
   }
 }
 </style>
