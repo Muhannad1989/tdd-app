@@ -1,4 +1,4 @@
-# tdd-app
+# dtt-app
 
 ## Project setup
 ```
