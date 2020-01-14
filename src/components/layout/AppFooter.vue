@@ -35,7 +35,6 @@ export default Vue.extend({
           const path: string = `${pre}${route.path}`;
           if (route.path !== "*") {
             array.push(path);
-            // console.log()
           }
           if (route.children) {
             array.push(...this.getRoutesList(route.children, `${path}/`));

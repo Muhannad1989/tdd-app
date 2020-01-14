@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div id="toggle" class="toggle-button" @click="toggleNav">
+    <div class="toggle-button" @click="toggleNav">
       <span>|||</span>
     </div>
     <ul id="routes">
@@ -12,14 +12,6 @@
 </template>
 
 <script lang="ts">
-window.addEventListener("resize", event => {
-  let toggle: any = document.getElementById("toggle");
-  if (window.screen.width < 401) {
-    toggle.classList.remove("hidden");
-  } else {
-    toggle.classList.add("hidden");
-  }
-});
 interface AppHeaderData {
   display: boolean;
 }
