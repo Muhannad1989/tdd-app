@@ -29,9 +29,9 @@ export default Vue.extend({
       // select element from html dom
       let selected: any = document.getElementById("routes");
       if (this.display) {
-        selected.classList.remove("hidden");
-      } else {
         selected.classList.add("hidden");
+      } else {
+        selected.classList.remove("hidden");
       }
       // set display to opposite value
       this.display = !this.display;
@@ -74,8 +74,6 @@ export default Vue.extend({
 @media only screen and (min-width: 401px) {
   .header ul {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
   }
 }
 
