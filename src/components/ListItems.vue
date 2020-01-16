@@ -1,7 +1,5 @@
 <template>
-  <router-link tag="li" :to="{ path }">
-    {{ item.API }}
-  </router-link>
+  <router-link tag="li" :to="{ path }" v-text="item.API"> </router-link>
 </template>
 
 <script lang="ts">
