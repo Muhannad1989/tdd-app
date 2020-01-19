@@ -23,26 +23,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
 import ItemInformation from "../components/ItemInformation.vue";
 import ListItems from "../components/ListItems.vue";
 import Loading from "../components/Loading.vue";
-import axios from "axios";
+import { DetailData } from "../dataTypes/index";
 
-interface Data {
-  API?: string;
-  Description?: string;
-  Auth?: string;
-  HTTPS?: boolean;
-  Cors?: string;
-  Link?: string;
-  Category?: string;
-}
-
-interface DetailData {
-  selectedItem: Data[];
-  items: Data[];
-  isLoading: boolean;
-}
 export default Vue.extend({
   name: "Detail",
   data(): DetailData {
@@ -57,11 +43,15 @@ export default Vue.extend({
     ListItems,
     Loading
   },
+  computed: {
+    ...mapGetters(["fetchedData"])
+  },
+  methods: {
+    ...mapActions(["fetchData"])
+  },
   async created() {
-    // fetch API
-    let res = await axios.get("https://api.publicapis.org/entries");
-    // selected user
-    this.items = await res.data.entries;
+    await this.fetchData();
+    this.items = await this.fetchedData;
     this.selectedItem = [...this.items];
     // select item by params
     this.selectedItem = this.selectedItem.filter(
@@ -69,8 +59,11 @@ export default Vue.extend({
     );
     // remove the selected item from the list
     this.items = this.items.filter(ele => ele.API != this.$route.params.id);
-    // sort items randomly
-    this.items = this.items.sort(() => Math.random() - 0.5);
+
+    // sort data randomly
+    // removed: because it comes already as a sorted randomly
+    // this.items = this.items.sort(() => Math.random() - 0.5);
+
     // take the item
     this.items = this.items.splice(0, 3);
     // turn off the loading

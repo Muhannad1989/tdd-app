@@ -12,6 +12,7 @@
             v-for="item in items"
             :key="item.id"
             :item="item"
+            :point="true"
           />
         </ul>
       </div>
@@ -22,33 +23,17 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
 import Selector from "../components/Selector.vue";
 import ListItems from "../components/ListItems.vue";
 import Loading from "../components/Loading.vue";
-import axios from "axios";
-
-interface Data {
-  API?: string;
-  Description?: string;
-  Auth?: string;
-  HTTPS?: boolean;
-  Cors?: string;
-  Link?: string;
-  Category?: string;
-}
-interface CategoryData {
-  categories: any[];
-  items: Data[];
-  fetchedData: Data[];
-  isLoading: boolean;
-  selected: string;
-}
+import { CategoryData } from "../dataTypes/index";
 
 export default Vue.extend({
   name: "Category",
   data(): CategoryData {
     return {
-      fetchedData: [],
+      data: [],
       items: [],
       categories: [],
       isLoading: true,
@@ -56,9 +41,10 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions(["fetchData"]),
     sortByCategory(value: string): void {
       // take a copy of the original data (reset)
-      this.items = [...this.fetchedData];
+      this.items = [...this.data];
       // get all categories depend on the selected category name
       this.items = this.items.filter(ele => ele.Category == value);
     }
@@ -68,12 +54,14 @@ export default Vue.extend({
     Selector,
     Loading
   },
+  computed: {
+    ...mapGetters(["fetchedData"])
+  },
   async created() {
-    // fetch Api data
-    let res = await axios.get("https://api.publicapis.org/entries");
-    // set data to 3 different variable
-    this.fetchedData = await res.data.entries;
-    this.categories = [...this.fetchedData];
+    await this.fetchData();
+    this.data = await this.fetchedData;
+    // take copy for categories
+    this.categories = [...this.data];
     // get all categories
     this.categories = this.categories.map(ele => ele.Category as string);
     // remove repeted categories

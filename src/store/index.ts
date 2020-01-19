@@ -24,4 +24,3 @@ export default new Vuex.Store({
     }
   }
 });
-/* eslint-disable-next-line no-console */

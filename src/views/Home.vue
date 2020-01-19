@@ -12,6 +12,7 @@
             :path="'/detail/' + item.API"
             :key="item.id"
             :item="item"
+            :point="true"
           />
         </ul>
       </div>
@@ -22,37 +23,19 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
 import ListItems from "../components/ListItems.vue";
 import Selector from "../components/Selector.vue";
 import Loading from "../components/Loading.vue";
-import axios from "axios";
-
-interface Data {
-  API?: string;
-  Description?: string;
-  Auth?: string;
-  HTTPS?: boolean;
-  Cors?: string;
-  Link?: string;
-  Category?: string;
-}
-
-interface HomeData {
-  fetchedApiData: Data[];
-  items: Data[];
-  isLoading: boolean;
-  selected: string;
-  options: string[];
-}
+import { HomeData } from "../dataTypes/index";
 
 export default Vue.extend({
   name: "Home",
   data(): HomeData {
     return {
-      fetchedApiData: [],
+      data: [],
       items: [],
       isLoading: true,
-      selected: "",
       options: ["a to z", "z to a", "default"]
     };
   },
@@ -61,15 +44,19 @@ export default Vue.extend({
     Selector,
     Loading
   },
+  computed: {
+    ...mapGetters(["fetchedData"])
+  },
 
   methods: {
+    ...mapActions(["fetchData"]),
     sorting(value: string): void {
       if (value == "default") {
         // take a copy from the orginal data (reset)
-        this.items = [...this.fetchedApiData];
+        this.items = [...this.data];
       } else if (value == "a to z") {
         // take a copy from the orginal data (reset)
-        this.items = [...this.fetchedApiData];
+        this.items = [...this.data];
         // sorting data alphabetically from A to Z
         this.items.sort((a, b) => {
           if ((a.API as string) > (b.API as string)) {
@@ -80,7 +67,7 @@ export default Vue.extend({
         });
       } else if (value == "z to a") {
         // take a copy from the orginal data (reset)
-        this.items = [...this.fetchedApiData];
+        this.items = [...this.data];
         // sorting data alphabetically from Z to A
         this.items.sort((a, b) => {
           if ((a.API as string) < (b.API as string)) {
@@ -94,15 +81,11 @@ export default Vue.extend({
   },
 
   async created() {
-    // fetching data from api
-    let res = await axios.get("https://api.publicapis.org/entries");
-    this.items = await res.data.entries;
-    // generate random array
-    this.items = this.items.sort(() => Math.random() - 0.5);
+    await this.fetchData();
     // take 10 items from generated array
-    this.items = this.items.slice(0, 10);
-    // clean reapeted items
-    this.fetchedApiData = [...this.items];
+    this.data = await this.fetchedData.slice(0, 10);
+    // take copy of data
+    this.items = [...this.data];
     // stop loading
     this.isLoading = false;
   }

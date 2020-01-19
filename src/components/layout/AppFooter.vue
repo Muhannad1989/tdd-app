@@ -49,19 +49,16 @@ export default Vue.extend({
 </script>
 <style scoped>
 .footer {
-  background: #2d3f47;
+  background: #131313;
   left: 0;
   top: 0;
   width: 100%;
-  text-align: center;
 }
 .footer a {
-  text-decoration: none;
   padding: 10px 5px;
   display: inline-block;
   margin: 10px;
   min-width: 88px;
-  color: wheat;
   font-size: 18px;
   transition: color 0.3s linear;
 }
@@ -69,18 +66,18 @@ export default Vue.extend({
   color: #00a9ff;
 }
 .footer .copy-right {
-  background-color: #0084c7;
+  background-color: #3c3c3c;
 }
 .footer .copy-right p {
   padding: 5px;
   font-size: 13px;
-  color: gainsboro;
+  color: #ababab;
 }
 @media only screen and (max-width: 400px) {
   .footer a {
     display: block;
     margin: 0 auto;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #5a5a5a;
     width: 100%;
   }
 }

@@ -5,8 +5,6 @@ import Home from "../views/Home.vue";
 import Random from "../views/Random.vue";
 import Detail from "../views/Detail.vue";
 import Category from "../views/Category.vue";
-// import Category2 from "../views/Category2.vue";
-import Home2 from "../views/Home2.vue";
 
 Vue.use(VueRouter);
 
@@ -30,17 +28,7 @@ const routes = [
     path: "/detail/:id",
     name: "Detail",
     component: Detail
-  },
-  {
-    path: "/home2",
-    name: "Home2",
-    component: Home2
   }
-  // {
-  //   path: "/category2",
-  //   name: "Category2",
-  //   component: Category2
-  // }
 ];
 
 const router = new VueRouter({

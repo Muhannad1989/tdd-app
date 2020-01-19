@@ -1,9 +1,17 @@
 <template>
   <div class="header">
-    <div class="toggle-button" @click="toggleNav">
+    <div
+      app
+      class="toggle-button"
+      @click="
+        {
+          hidden = !hidden;
+        }
+      "
+    >
       <span>|||</span>
     </div>
-    <ul id="routes">
+    <ul id="routes" class="routes" :class="{ hidden }">
       <router-link tag="li" to="/">Home</router-link>
       <router-link tag="li" to="/random">Random</router-link>
       <router-link tag="li" to="/category">Category</router-link>
@@ -13,29 +21,15 @@
 
 <script lang="ts">
 interface AppHeaderData {
-  display: boolean;
+  hidden: boolean;
 }
 import Vue from "vue";
 export default Vue.extend({
   name: "HeaderApp",
   data(): AppHeaderData {
     return {
-      display: true
+      hidden: false
     };
-  },
-
-  methods: {
-    toggleNav(): void {
-      // select element from html dom
-      let selected: any = document.getElementById("routes");
-      if (this.display) {
-        selected.classList.add("hidden");
-      } else {
-        selected.classList.remove("hidden");
-      }
-      // set display to opposite value
-      this.display = !this.display;
-    }
   }
 });
 </script>
@@ -52,15 +46,11 @@ export default Vue.extend({
   left: 0;
   width: 100%;
 }
-.header ul {
-  background-color: rgba(0, 0, 20, 0.2);
-}
 .header li {
   margin: 0;
   width: 100px;
   border-radius: 0;
   border: none;
-  color: white;
   font-size: 18px;
 }
 .toggle-button {
@@ -79,26 +69,23 @@ export default Vue.extend({
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  .header ul {
-    background-color: rgba(170, 163, 0, 0.9);
-  }
   .header ul li {
     width: 100%;
     max-width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #4a4a4a;
   }
   .toggle-button {
-    width: 40px;
+    width: 100%;
     display: block;
     height: 40px;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
+    text-align: left;
+    font-size: 30px;
     border: "none";
-    transform: rotate(90deg);
+    background-color: rgba(0, 0, 20, 0.582);
+    border-bottom: 1px solid gray;
   }
-  .toggle-button span:hover {
-    cursor: pointer;
+  .toggle-button span {
+    padding: 5px;
   }
 }
 </style>

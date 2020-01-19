@@ -25,12 +25,7 @@ export default Vue.extend({
 .item-information {
   background-color: rgba(0, 0, 20, 0.25);
   max-width: 400px;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 8vh auto;
-  color: white;
-  text-align: center;
-  overflow: hidden;
+  margin: 40px auto;
 }
 .item-information h2 {
   margin: 5px auto;
@@ -38,18 +33,15 @@ export default Vue.extend({
 .item-information p {
   margin: 15px auto;
 }
-span {
+.item-information span {
   color: #74b1f7;
   font-size: 16px;
-  font-weight: bold;
 }
-a {
-  color: white;
+.item-information a {
   color: #ffc107;
-  text-decoration: none;
   word-break: break-all;
 }
-a:hover {
+.item-information a:hover {
   color: #a07800;
 }
 </style>
