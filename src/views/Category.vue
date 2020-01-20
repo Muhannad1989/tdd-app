@@ -72,35 +72,4 @@ export default Vue.extend({
 });
 </script>
 
-<style>
-.listItems {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.listItems li {
-  min-width: 24%;
-  width: 24%;
-}
-
-@media only screen and (max-width: 900px) {
-  .listItems li {
-    min-width: 32%;
-    min-width: 32%;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .listItems li {
-    min-width: 45%;
-    width: 45%;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .listItems li {
-    min-width: 90%;
-    width: 90%;
-  }
-}
-</style>
+<style></style>

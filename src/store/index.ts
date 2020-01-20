@@ -14,6 +14,7 @@ export default new Vuex.Store({
   actions: {
     async fetchData({ commit }) {
       const res = await axios("https://api.publicapis.org/entries");
+      // sort data randomly
       const data = await res.data.entries.sort(() => Math.random() - 0.5);
       commit("setData", data);
     }

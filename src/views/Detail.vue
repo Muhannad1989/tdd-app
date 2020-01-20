@@ -2,21 +2,15 @@
   <div class="detail">
     <div class="content">
       <h1>User Details</h1>
-      <div class="container">
-        <div v-if="!isLoading">
-          <h2>Item Information</h2>
-          <ItemInformation :selectedItem="selectedItem[0]" />
-          <h2>Other Roandom Items</h2>
-          <ul class="other-items">
-            <ListItems
-              v-for="item in items"
-              v-bind:key="item.API"
-              :item="item"
-            />
-          </ul>
-        </div>
-        <Loading v-if="isLoading" />
+      <div v-if="!isLoading">
+        <h2>Item Information</h2>
+        <ItemInformation :selectedItem="selectedItem[0]" />
+        <h2>Other Roandom Items</h2>
+        <ul class="other-items">
+          <ListItems v-for="item in items" v-bind:key="item.API" :item="item" />
+        </ul>
       </div>
+      <Loading v-if="isLoading" />
     </div>
   </div>
 </template>
@@ -60,11 +54,10 @@ export default Vue.extend({
     // remove the selected item from the list
     this.items = this.items.filter(ele => ele.API != this.$route.params.id);
 
-    // sort data randomly
-    // removed: because it comes already as a sorted randomly
+    // sorting data randomly is removed, because it comes already with a random sorted array from store
     // this.items = this.items.sort(() => Math.random() - 0.5);
 
-    // take the item
+    // take 3 items
     this.items = this.items.splice(0, 3);
     // turn off the loading
     this.isLoading = false;

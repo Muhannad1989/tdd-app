@@ -26,11 +26,6 @@ export default Vue.extend({
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100%;
-}
-
 body {
   background-image: url("https://cdn.hipwallpaper.com/i/28/25/M1PqGQ.png");
   background-attachment: fixed;
@@ -41,12 +36,9 @@ body {
   min-height: 100%;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
 .content {
+  width: 90%;
+  margin: 0 auto;
   margin-top: 100px;
 }
 
@@ -125,14 +117,13 @@ form {
 form,
 .other-items,
 .container {
-  margin: 20px;
+  margin: 20px auto;
 }
 
 li {
   margin: 5px auto;
   border: 1px solid #bdbdbd;
   width: 340px;
-  max-width: 340px;
   transition: background-color 0.2s linear;
 }
 
@@ -179,5 +170,43 @@ li.point:hover,
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #00026d;
+}
+
+/* List of items in both "home and category pages" */
+.container,
+.listItems {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.listItems {
+  padding: 10px;
+}
+.listItems li {
+  width: 24%;
+}
+
+/* media query */
+@media only screen and (max-width: 900px) {
+  .listItems li {
+    width: 32%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .listItems li {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .listItems li {
+    width: 90%;
+    overflow: hidden;
+  }
+  li {
+    width: 90%;
+  }
 }
 </style>

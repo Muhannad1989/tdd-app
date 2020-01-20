@@ -16,8 +16,8 @@ export interface HomeData {
   isLoading: boolean;
   options: string[];
 }
-// Category page
 
+// Category page
 export interface CategoryData {
   categories: any[];
   items: Data[];

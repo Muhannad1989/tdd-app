@@ -39,9 +39,9 @@ export default Vue.extend({
   methods: {
     ...mapActions(["fetchData"]),
     random() {
-      // generate random number
+      // generate random number "index"
       const random: number = Math.floor(Math.random() * this.items.length);
-      // set random item to state
+      // select a random item
       this.item = [this.items[random]];
     }
   },
