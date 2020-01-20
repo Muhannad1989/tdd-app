@@ -165,16 +165,6 @@ li.point:hover,
   cursor: pointer;
 }
 
-/* .listItems {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: wrap;
-}
-.listItems li {
-  width: 300px;
-} */
-
 /* scrollbar style  */
 ::-webkit-scrollbar {
   width: 5px;
@@ -189,11 +179,5 @@ li.point:hover,
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #00026d;
-}
-
-@media only screen and (max-width: 400px) {
-  li {
-    width: 220px;
-  }
 }
 </style>
