@@ -92,7 +92,7 @@ select,
 h1,
 h2,
 li,
-li.point:hover,
+li.pointer:hover,
 .routes li:hover,
 button:hover,
 form,
@@ -145,12 +145,12 @@ button:hover {
   border: 1px solid #0366d6;
 }
 
-li.point:hover,
+li.pointer:hover,
 .routes li:hover {
   background-color: #3292ff;
 }
 
-li.point:hover,
+li.pointer:hover,
 .routes li:hover,
 .header .toggle-button span:hover {
   cursor: pointer;
@@ -205,7 +205,7 @@ li.point:hover,
     width: 90%;
     overflow: hidden;
   }
-  li {
+  .other-items li {
     width: 90%;
   }
 }

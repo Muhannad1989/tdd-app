@@ -12,7 +12,7 @@
             :path="'/detail/' + item.API"
             :key="item.id"
             :item="item"
-            :point="true"
+            :pointer="true"
           />
         </ul>
       </div>

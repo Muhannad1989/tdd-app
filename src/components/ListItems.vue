@@ -1,5 +1,5 @@
 <template>
-  <router-link :class="{ point }" tag="li" :to="{ path }" v-text="item.API">
+  <router-link :class="{ pointer }" tag="li" :to="{ path }" v-text="item.API">
   </router-link>
 </template>
 
@@ -8,7 +8,7 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "ListItems",
-  props: ["item", "path", "point"]
+  props: ["item", "path", "pointer"]
 });
 </script>
 

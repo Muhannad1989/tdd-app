@@ -12,7 +12,7 @@
             v-for="item in items"
             :key="item.id"
             :item="item"
-            :point="true"
+            :pointer="true"
           />
         </ul>
       </div>
