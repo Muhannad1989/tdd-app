@@ -64,10 +64,10 @@ export default Vue.extend({
 .line-effect {
   position: absolute;
   width: 0;
-  height: 100%;
-  top: 0;
+  height: 5%;
+  top: 40px;
   left: 0;
-  border-bottom: 2px solid red;
+  border-top: 2px solid red;
 }
 
 /* All screens style except Mobile  */

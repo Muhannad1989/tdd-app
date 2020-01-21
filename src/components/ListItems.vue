@@ -1,11 +1,5 @@
 <template>
-  <router-link
-    class="hvr-shrink"
-    :class="{ pointer }"
-    tag="li"
-    :to="{ path }"
-    v-text="item.API"
-  >
+  <router-link :class="{ pointer }" tag="li" :to="{ path }" v-text="item.API">
   </router-link>
 </template>
 
