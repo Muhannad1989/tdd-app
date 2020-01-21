@@ -50,8 +50,6 @@ export default Vue.extend({
 <style scoped>
 .footer {
   background: #131313;
-  left: 0;
-  top: 0;
   width: 100%;
 }
 .footer a {

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app">
     <AppHeader />
     <router-view />
     <AppFooter />
@@ -9,7 +9,20 @@
 import Vue from "vue";
 import AppHeader from "./components/layout/AppHeader.vue";
 import AppFooter from "./components/layout/AppFooter.vue";
-
+// scrolling
+window.onscroll = () => {
+  const header: any = document.getElementById("header");
+  const lineEffect: any = document.getElementById("line-effect");
+  if (document.documentElement.scrollTop > 50) {
+    lineEffect.style.width = "100%";
+    lineEffect.style.transition = "width 0.5s linear";
+    header.style.boxShadow = "none";
+    header.style.transition = "box-shadow 1s linear";
+  } else {
+    lineEffect.style.width = "0";
+    header.style.boxShadow = "0 -1px 30px #919599";
+  }
+};
 export default Vue.extend({
   name: "App",
   components: {

@@ -44,7 +44,7 @@ select {
   border: none;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 800px) {
   form p,
   form span {
     display: block;
