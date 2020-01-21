@@ -67,7 +67,7 @@ export default Vue.extend({
   height: 5%;
   top: 40px;
   left: 0;
-  border-top: 2px solid green;
+  border-top: 2px solid red;
 }
 
 /* All screens style except Mobile  */
