@@ -15,9 +15,9 @@ window.onscroll = () => {
   const lineEffect: any = document.getElementById("line-effect");
   if (document.documentElement.scrollTop > 50) {
     lineEffect.style.width = "100%";
-    lineEffect.style.transition = "width 0.5s linear";
     header.style.boxShadow = "none";
-    header.style.transition = "box-shadow 1s linear";
+    lineEffect.style.transition = "width 0.5s linear";
+    header.style.transition = "box-shadow 1s linear 0.5s";
   } else {
     lineEffect.style.width = "0";
     header.style.boxShadow = "0 -1px 30px #919599";
