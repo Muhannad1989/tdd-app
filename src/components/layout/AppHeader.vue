@@ -88,7 +88,6 @@ export default Vue.extend({
 
   .hidden {
     height: 0;
-    /* display: none; */
   }
 
   .header ul li {
@@ -103,7 +102,6 @@ export default Vue.extend({
     text-align: left;
     font-size: 30px;
     padding-top: 3px;
-    /* border: "none"; */
     background-color: rgba(0, 0, 20, 0.582);
     border-bottom: 1px solid gray;
   }
