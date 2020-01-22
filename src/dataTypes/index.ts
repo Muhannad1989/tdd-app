@@ -9,6 +9,21 @@ interface Data {
   Category?: string;
 }
 
+// Footer component
+export interface DataFooter {
+  links: string[];
+  routes: object[];
+}
+
+// Header component
+export interface AppHeaderData {
+  hidden: boolean;
+}
+
+export interface SelectorData {
+  selected: string;
+}
+
 // Home page
 export interface HomeData {
   data: Data[];

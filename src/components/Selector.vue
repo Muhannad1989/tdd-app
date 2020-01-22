@@ -13,9 +13,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-interface SelectorData {
-  selected: string;
-}
+import { SelectorData } from "../dataTypes/index";
 
 export default Vue.extend({
   name: "Selector",

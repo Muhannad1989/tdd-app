@@ -10,10 +10,8 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-interface DataFooter {
-  links: string[];
-  routes: object[];
-}
+import { DataFooter } from "../../dataTypes/index";
+
 export default Vue.extend({
   name: "FooterApp",
   data(): DataFooter {

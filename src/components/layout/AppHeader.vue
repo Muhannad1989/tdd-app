@@ -22,10 +22,8 @@
 </template>
 
 <script lang="ts">
-interface AppHeaderData {
-  hidden: boolean;
-}
 import Vue from "vue";
+import { AppHeaderData } from "../../dataTypes/index";
 export default Vue.extend({
   name: "HeaderApp",
   data(): AppHeaderData {
